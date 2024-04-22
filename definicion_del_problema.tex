@@ -2,9 +2,11 @@
 
 \subsection{Contexto}
 
-En el mundo de la robótica existen diferentes categorías de competencias a lo largo del mundo. Una de las más antiguas es la All Japan Robotracer \& micromouse Contest\footnote{\url{https://www.ntf.or.jp/}, Página oficial de la competencia} con más de 40 años de trayectoria que consta de 2 categorías. Uno de los objetivos de esta competencia es ser un cuna para la innovación, diferentes empresas compiten acá para poner a pruebas nuevas tecnologías, y así evaluar su factibilidad y utilidad para luego poder implementarlas en aplicaciónes de la vida real. El enfoque de este trabajo va a ser en la categoría denominada Robotracer.
+En el mundo de la robótica existen diferentes categorías de competencias a lo largo del mundo. Una de las más antiguas es la All Japan Robotracer \& micromouse Contest\footnote{\url{https://www.ntf.or.jp/}, Página oficial de la competencia} con más de 40 años de trayectoria que consta de 2 categorías, Robotracer y Micromouse. 
 
-Las bases de la competencia de la categoría a trabajar son las siguientes: Se tiene una pista consistente de una linea blanca continua sobre fondo negro (Ver figura \ref{fig:pista1}). El robot debe ser capaz de recorrer la totalidad del trazado de forma válida, es decir, que la poryección del robot no se salda de este, y además detenerse por su cuenta. Esta pista no se conocida hasta el momento de participar, por lo que no se puede hacer un pre mapeado de la pista.
+Los objetivos de esta competencia son, por un lado, un punto de encuentro para desarrolladores, con un enfoque educativo, ya que se llama a participar a diferentes escuelas y universidades,y por el otro, es ser un cuna para la innovación, diferentes empresas compiten acá para poner a pruebas nuevas tecnologías, y así evaluar su factibilidad y utilidad para luego poder implementarlas en aplicaciónes de la vida real. El enfoque de este trabajo va a ser en la categoría denominada Robotracer.
+
+Las bases de la competencia de la categoría a trabajar son las siguientes: Se tiene una pista consistente de una linea blanca continua sobre fondo negro (Ver figura \ref{fig:pista1}). El robot debe ser capaz de recorrer la totalidad del trazado de forma válida, es decir, que la proyección del robot no se salga de este, y además detenerse por su cuenta. Esta pista no es conocida hasta el momento de participar, por lo que no se puede hacer un pre mapeado de la pista.
 
 Se tienen 5 intentos dentro de un periodo de 3 minutos para lograr el menor tiempo posible. Lo normal es utilizar el primer intento para mapear la pista y los otros 4 para lograr vueltas válidas lo más rápido posible.
 
@@ -15,8 +17,6 @@ Aquí se puede ver la ronda del campeón actual de la competencia. \cite{ganador
 \includegraphics[width=0.8\textwidth]{ejemplo_pista_1}
 \caption{\label{fig:pista1} Ejemplo de pista} Fuente: Elaboración propia.
 \end{figure}
-
-Los últimos años todos los esfuerzos de mejora se han enfocado en la mecánica y electrónica del robot, principalmente con la adición de métodos de succion mediante turbinas, dejando de lado el software. Es por este motivo que en la última versión no se ha otorgado el premio a la innovación a ningún participante.
 
 \subsection{Arquitectura Actual}
 En la última competencia realizada, la gran mayoría (por no decir todos), programaba sus robots en C/C++, aplicando algoritmos de MATLAB (más adelante se detalla). La ventaja de esto es que MATLAB genera scripts en C/C++, por lo que se pueden usar algoritmos de optimización preexistentes sin mayores complicaciones.
@@ -48,4 +48,27 @@ un mapa binario donde la ruta generada, más el ancho del robot, se define como 
 Con la ruta definida, mediante un algoritmo de seguimiento de rutas \footnote{\url{https://la.mathworks.com/help/robotics/ug/path-following-for-differential-drive-robot.html} , Path follower}, se le dan las instrucciones de movimiento al robot, donde en cada intento se varían las variables de velocidad, aceleración y freno.
 
 Esta información fue basada en las publicaciones de Haruki Shimotori \footnote{\url{https://underbirdworks.blogspot.com/2020/12/matlabprm.html}, explicacion de Haruki Shimotori } y en el siguiente video se puede ver una idea similar en donde se utiliza Path Smoothing \cite{pathsmoothing}
+
+\subsection{Información del problema}
+Los últimos años todos los esfuerzos de mejora se han enfocado en la mecánica y electrónica del robot. dejando de lado el software. Estas mejoras van desde el uso de motores más potentes, más eficientes, sensores más precisos, mejoras en agarre y tracción del robot mediante turbinas, pero sin cambiar los algoritmos que hay por detrás.
+
+Todas estas mejoras no se han considerado como innovaciones grandes, por lo que existe un espacio de investigación en el que el software pueda ser el protagonista. Es por este motivo que en la última versión no se ha otorgado el premio a la innovación a ningún participante, siendo su obtención uno de los objetivos de esta memoria.
+
+\subsection{Objetivos}
+
+\subsubsection{Objetivos Generales}
+
+Implementar un método nuevo de seguimiento y mapeo de línea, para su posterior optimización enfocada en la maximización de la velocidad implementado en un robot sigue lineas,  mediante el uso de redes neuronales, específicamente visión computacional y aprendizaje reforzado.
+
+En primera instancia, se espera validar el trabajo mediante simuladores en diferentes disposiciones de pista, variando el nivel de dificultad, para eventualmente poder aplicar lo logrado con este trabajo en un robot real en la siguiente versión de la competencia All Japan para la verificación en un entorno competitivo de los métodos abordados.
+
+\subsubsection{Objetivos específicos}
+
+\begin{itemize}
+	\item Implementar un algoritmo de visión computacional para un seguimiento exitoso de la pista en tiempo real.
+	\item Implementar un algoritmo de mapeo de la pista en tiempo real, utilizando únicamente visión computacional.
+	\item Implementar un algoritmo de aprendizaje reforzado para mejorar los tiempos entre intentos, optimizando el recorrido y velocidad a tiempo real.
+\end{itemize}
+
+
 
