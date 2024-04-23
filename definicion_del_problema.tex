@@ -21,6 +21,9 @@ Aquí se puede ver la ronda del campeón actual de la competencia. \cite{ganador
 \subsection{Arquitectura Actual}
 En la última competencia realizada, la gran mayoría (por no decir todos), programaba sus robots en C/C++, aplicando algoritmos de MATLAB (más adelante se detalla). La ventaja de esto es que MATLAB genera scripts en C/C++, por lo que se pueden usar algoritmos de optimización preexistentes sin mayores complicaciones.
 
+\subsubsection{Seguimiento de línea}
+El método actual para seguir la línea se basa principalmente en el uso de sensores infrarrojo para la obtención de la posición relativa del robot, y con esta información el uso de un PID para el control automático.
+
 \subsubsection{Mapeo}
 Para la primera vuelta, los robots deben ser capaces de las siguientes 2 características: identificar las marcas de curva que se encuentran en la pista en cada cambio de curvatura (Ver figura \ref{fig:marcaspista}) y poder saber su posición actual en términos de coordenadas cartesianas (x,y).
 
@@ -60,7 +63,7 @@ Todas estas mejoras no se han considerado como innovaciones grandes, por lo que 
 
 Implementar un método nuevo de seguimiento y mapeo de línea, para su posterior optimización enfocada en la maximización de la velocidad implementado en un robot sigue lineas,  mediante el uso de redes neuronales, específicamente visión computacional y aprendizaje reforzado.
 
-En primera instancia, se espera validar el trabajo mediante simuladores en diferentes disposiciones de pista, variando el nivel de dificultad, para eventualmente poder aplicar lo logrado con este trabajo en un robot real en la siguiente versión de la competencia All Japan para la verificación en un entorno competitivo de los métodos abordados.
+En primera instancia, se espera validar el trabajo mediante simuladores en diferentes disposiciones de pista, variando el nivel de dificultad, para eventualmente poder aplicar lo logrado con este trabajo en un robot real, que conste únicamente de un control diferencial de ruedas y una cámara, en la siguiente versión de la competencia All Japan para la verificación en un entorno competitivo de los métodos abordados.
 
 \subsubsection{Objetivos específicos}
 
@@ -69,6 +72,6 @@ En primera instancia, se espera validar el trabajo mediante simuladores en difer
 	\item Implementar un algoritmo de mapeo de la pista en tiempo real, utilizando únicamente visión computacional.
 	\item Implementar un algoritmo de aprendizaje reforzado para mejorar los tiempos entre intentos, optimizando el recorrido y velocidad a tiempo real.
 \end{itemize}
-
-
+\newpage
+\subsection{Árbol del problema}
 
