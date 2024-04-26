@@ -15,3 +15,24 @@ Por otro lado, si bien no es el enfoque de este trabajo, es necesario entender l
 \item Control diferencial de motores
 \item Simulador Webots
 \end{itemize}
+
+\textit{\textcolor{red}{Proximamente...}}
+
+\subsection{Estado del arte}
+
+\subsubsection{Seguimiento de línea}
+Varios modelos se han definido en el marco de visión computacional para hacer seguimiento de líneas donde se han testeado diferentes tecnologías para ver su viabilidad, esto considerando que al ser robots compactos, el poder de procesamiento de imagen se ve altamente limitado al procesador utilizado. Un estudio comparativo \cite{raspvsjetson} de las 2 placas más comunes para aplicaciones que requieren alto poder de cómputo, Raspberry Pi y Jetson Nano, demostró que mediante un algoritmo de detección de bordes, se logran resultados por sobre el 90\% de precisión en ambas placas. En esta instancia sólo se utilizó 3 posibles movimientos, avanzar recto, doblar izquierda y doblar derecha. 
+
+Para un control más preciso se puede utilizar un algoritmo que transforme la imagen a algo interpretable como un sensor análogo, y así poder emplear técnicas clásicas de control, como lo es el PID. En este caso \cite{visiontopid}, el algoritmo utilizado no resultó ser más eficiente que un sensor análogo tradicional. 
+
+\textit{\textcolor{red}{Proximamente...}}
+
+\subsubsection{Uso de aprendizaje reforzado}
+Si bien la aplicación del aprendizaje reforzado está altamente utilizada en el mundo de la robótica, las aplicaciones específicas al problema de seguimiento de línea no son muchas. Un trabajo reciente \cite{analogrl} consiste en entrenar a un agente para que controle un robot siguelineas, el cual encuentra equipado con sensores análogos clásicos. En este se recalca la necesidad de hacer un entrenamiento completo antes de la puesta en práctica para lograr los mejores resultados posibles. Si bien se explica que el método no es completamente preciso debido a la incertidumbre de entorno, resultó tener un gran grado de éxito en el recorrido de pistas de diferente dificultad. 
+
+De acá se puede rescatar la base del método y aplicarlo a un sistema con visión computacional, además de no sólo basarse en un entrenamiento previo, si no que debido al contexto de este trabajo, permitir al agente seguir aprendiendo en tiempo real.
+
+\subsubsection{Mapeo de pista}
+
+\textit{\textcolor{red}{Proximamente...}}
+
