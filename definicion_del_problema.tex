@@ -19,7 +19,7 @@ Aquí se puede ver la ronda del campeón actual de la competencia. \cite{ganador
 \end{figure}
 
 \subsection{Arquitectura Actual}
-En la última competencia realizada, la gran mayoría (por no decir todos), programaba sus robots en C/C++, aplicando algoritmos de MATLAB (más adelante se detalla). La ventaja de esto es que MATLAB genera scripts en C/C++, por lo que se pueden usar algoritmos de optimización preexistentes sin mayores complicaciones.
+En la última competencia realizada, la gran mayoría (por no decir todos), utilizaban C/C++ para el control de los robots, aplicandodistintos algoritmos de MATLAB (más adelante se detalla) para la optimización de la pista. La ventaja de esto es que MATLAB genera scripts en C/C++, por lo que se pueden utilizar algoritmos preexistentes sin mayores complicaciones, apoyado de la inclusión de Simulink, para una interacción más directa y simple entre MATLAB y el robot.
 
 \subsubsection{Seguimiento de línea}
 El método actual para seguir la línea se basa principalmente en el uso de sensores infrarrojo para la obtención de la posición relativa del robot, y con esta información el uso de un PID para el control automático.
@@ -43,7 +43,7 @@ un mapa binario donde la ruta generada, más el ancho del robot, se define como 
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.5\textwidth]{ejemplo_optimizacion_PRM}
+\includegraphics[width=0.4\textwidth]{ejemplo_optimizacion_PRM}
 \caption{\label{fig:PRM} Aplicación de PRM} Fuente: Haruki Shimotori.
 \end{figure}
 
