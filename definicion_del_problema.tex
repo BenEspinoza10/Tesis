@@ -4,13 +4,13 @@
 
 En el mundo de la robótica existen diferentes categorías de competencias a lo largo del mundo. Una de las más antiguas es la All Japan Robotracer \& micromouse Contest\footnote{\url{https://www.ntf.or.jp/}, Página oficial de la competencia} con más de 40 años de trayectoria que consta de 2 categorías, Robotracer y Micromouse.
 
-Los objetivos de esta competencia son, por un lado, un punto de encuentro para desarrolladores, con un enfoque educativo, ya que se llama a participar a diferentes escuelas y universidades,y por el otro, es ser un cuna para la innovación, ya que diferentes empresas compiten acá para poner a pruebas nuevas tecnologías, y así evaluar su factibilidad y utilidad para luego poder implementarlas en aplicaciónes de la vida real. El enfoque de este trabajo va a ser en la categoría denominada Robotracer.
+Esta competencia tiene dos principales objetivos. Por un lado busca ser un punto de encuentro para desarrolladores con una perspectiva educativa, ya que se llama a participar a diferentes escuelas y universidades. Por el otro, es ser una cuna para la innovación en la que distintas empresas entran a la competencia para poner a prueba nuevas tecnologías y evaluar su factibilidad y utilidad, para luego poder implementarse en aplicaciones de la vida real. El enfoque de este trabajo será en la categoría denominada Robotracer.
 
-Las bases de la competencia de la categoría a trabajar son las siguientes: Se tiene una pista consistente de una linea blanca continua sobre fondo negro (Ver figura \ref{fig:pista1}). El robot debe ser capaz de recorrer la totalidad del trazado de forma válida, es decir, que la proyección del robot no se salga de este, y además detenerse por su cuenta. Esta pista no es conocida hasta el momento de participar, por lo que no se puede hacer un pre mapeado de la pista.
+Las bases de la competencia en la categoría a trabajar son las siguientes: Se tiene una pista consistente de una linea blanca continua sobre fondo negro (Ver figura \ref{fig:pista1}). El robot debe ser capaz de recorrer la totalidad del trazado de forma válida, o sea, que la proyección del robot no se salga de este, además debe detenerse por su cuenta. Esta pista no es conocida hasta el momento de participar, por lo que no se puede hacer un pre mapeado de la pista.
 
-Se tienen 5 intentos dentro de un periodo de 3 minutos para lograr el menor tiempo posible. Lo normal es utilizar el primer intento para mapear la pista y los otros 4 para lograr vueltas válidas lo más rápido posible.
+Cada participante tiene 5 intentos dentro de un periodo de 3 minutos para lograr el menor tiempo posible. Lo normal es utilizar el primer intento para mapear la pista y los otros 4 para tratar de obtener vueltas válidas lo más rápido posible.
 
-Aquí se puede ver la ronda del campeón actual de la competencia. \cite{ganador2023}
+A continuación se puede ver la ronda del campeón actual de la competencia. \cite{ganador2023}
 
 \begin{figure}[h]
 \centering
@@ -19,7 +19,7 @@ Aquí se puede ver la ronda del campeón actual de la competencia. \cite{ganador
 \end{figure}
 
 \subsection{Arquitectura Actual}
-En la última competencia realizada, la gran mayoría (por no decir todos), utilizaban C/C++ para el control de los robots, aplicandodistintos algoritmos de MATLAB (más adelante se detalla) para la optimización de la pista. La ventaja de esto es que MATLAB genera scripts en C/C++, por lo que se pueden utilizar algoritmos preexistentes sin mayores complicaciones, apoyado de la inclusión de Simulink, para una interacción más directa y simple entre MATLAB y el robot.
+En la última competencia realizada, la gran mayoría (por no decir todos) utilizó C/C++ para el control de los robots, aplicando distintos algoritmos de MATLAB (más adelante se detalla) para la optimización de la pista. La ventaja de esto es que MATLAB genera scripts en C/C++, por lo que se pueden utilizar algoritmos preexistentes sin mayores complicaciones, apoyado de la inclusión de Simulink para una interacción más directa y simple entre MATLAB y el robot.
 
 \subsubsection{Seguimiento de línea}
 El método actual para seguir la línea se basa principalmente en el uso de sensores infrarrojo para la obtención de la posición relativa del robot, y con esta información el uso de un PID para el control automático.
@@ -47,21 +47,24 @@ un mapa binario donde la ruta generada, más el ancho del robot, se define como 
 \caption{\label{fig:PRM} Aplicación de PRM} Fuente: Haruki Shimotori.
 \end{figure}
 
-\newpage
 Con la ruta definida, mediante un algoritmo de seguimiento de rutas \footnote{\url{https://la.mathworks.com/help/robotics/ug/path-following-for-differential-drive-robot.html} , Path follower}, se le dan las instrucciones de movimiento al robot, donde en cada intento se varían las variables de velocidad, aceleración y freno.
 
 Esta información fue basada en las publicaciones de Haruki Shimotori \footnote{\url{https://underbirdworks.blogspot.com/2020/12/matlabprm.html}, explicacion de Haruki Shimotori } y en el siguiente video se puede ver una idea similar en donde se utiliza Path Smoothing \cite{pathsmoothing}
 
-\subsection{Información del problema}
-Los últimos años todos los esfuerzos de mejora se han enfocado en la mecánica y electrónica del robot. dejando de lado el software. Estas mejoras van desde el uso de motores más potentes, más eficientes, sensores más precisos, mejoras en agarre y tracción del robot mediante turbinas, pero sin cambiar los algoritmos que hay por detrás.
+\subsubsection{Menciones destacables}
 
-Todas estas mejoras no se han considerado como innovaciones grandes, por lo que existe un espacio de investigación en el que el software pueda ser el protagonista. Es por este motivo que en la última versión no se ha otorgado el premio a la innovación a ningún participante, siendo su obtención uno de los objetivos de esta memoria.
+Si bien no se ha visto la implementación de redes neuronales en esta competencia, hay casos de uso de sensores similares a cámaras, solo que no se implementan algoritmos de visión computacional. Como el caso de David Otten \footnote{\url{https://www.ntf.or.jp/mouse/micromouse2023/Robot/AllJapan/TechRT51.html}}, implementa un robot con una cámara en donde se obtiene los valores analógicos de este, para luego aplicar algoritmos mencionados anteriormente.
+
+\subsection{Información del problema}
+Los últimos años todos los esfuerzos de desarrollo se han enfocado en la mecánica y electrónica del robot, dejando de lado el software. Estas mejoras van desde el uso de motores más potentes, más eficientes, sensores más precisos, más agarre y tracción del robot mediante turbinas, pero sin cambiar los algoritmos que hay por detrás.
+
+Todos estos cambios no se han considerado como innovaciones grandes, por lo que existe un espacio de investigación en el que el software pueda ser el protagonista. Es por este motivo que en la última versión no se ha otorgado el premio a la innovación a ningún participante, siendo su obtención uno de los objetivos de esta memoria.
 
 \subsection{Objetivos}
 
 \subsubsection{Objetivos Generales}
 
-Implementar un método nuevo de seguimiento y mapeo de línea, para su posterior optimización enfocada en la maximización de la velocidad implementado en un robot sigue lineas,  mediante el uso de redes neuronales, específicamente visión computacional y aprendizaje reforzado. Estas redes neuronales van a estar trabajando en sincronía para lograr el mejor control en compentencia.
+Implementar un método nuevo de seguimiento y mapeo de línea, para su posterior optimización enfocada en la maximización de la velocidad aplicado en un robot sigue lineas  mediante el uso de redes neuronales, específicamente visión computacional y aprendizaje reforzado. Estas redes neuronales van a estar trabajando en sincronía para lograr el mejor control en compentencia.
 
 En primera instancia, se espera validar el trabajo mediante simuladores en diferentes disposiciones de pista, variando el nivel de dificultad, para eventualmente poder aplicar lo logrado con este trabajo en un robot real, que conste únicamente de un control diferencial de ruedas y una cámara, en la siguiente versión de la competencia All Japan para la verificación en un entorno competitivo de los métodos abordados.
 
