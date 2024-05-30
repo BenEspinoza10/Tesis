@@ -2,11 +2,11 @@
 
 \subsection{Contexto}
 
-En el mundo de la robótica existen diferentes categorías de competencias a lo largo del mundo. Una de las más antiguas es la All Japan Robotracer \& micromouse Contest\footnote{\url{https://www.ntf.or.jp/}, Página oficial de la competencia} con más de 40 años de trayectoria que consta de 2 categorías, Robotracer y Micromouse.
+En el mundo de la robótica existen diferentes categorías de competencias a lo largo del mundo. Una de las más antiguas es la All Japan Robotracer \& Micromouse Contest\footnote{\url{https://www.ntf.or.jp/}, Página oficial de la competencia} con más de 40 años de trayectoria que consta de 2 categorías, Robotracer y Micromouse.
 
-Esta competencia tiene dos principales objetivos. Por un lado busca ser un punto de encuentro para desarrolladores con una perspectiva educativa, ya que se llama a participar a diferentes escuelas y universidades. Por el otro, es ser una cuna para la innovación en la que distintas empresas entran a la competencia para poner a prueba nuevas tecnologías y evaluar su factibilidad y utilidad, para luego poder implementarse en aplicaciones de la vida real. El enfoque de este trabajo será en la categoría denominada Robotracer.
+Esta competencia tiene dos principales objetivos. Por un lado, busca ser un punto de encuentro para desarrolladores con una perspectiva educativa, ya que se llama a participar a diferentes escuelas y universidades. Por el otro, es ser una cuna para la innovación en la que distintas empresas entran a la competencia para poner a prueba nuevas tecnologías y evaluar su factibilidad y utilidad, para luego poder implementarse en aplicaciones de la vida real. El enfoque de este trabajo será en la categoría denominada Robotracer.
 
-Las bases de la competencia en la categoría a trabajar son las siguientes: Se tiene una pista consistente de una linea blanca continua sobre fondo negro (Ver figura \ref{fig:pista1}). El robot debe ser capaz de recorrer la totalidad del trazado de forma válida, o sea, que la proyección del robot no se salga de este, además debe detenerse por su cuenta. Esta pista no es conocida hasta el momento de participar, por lo que no se puede hacer un pre mapeado de la pista.
+Las bases de la competencia en la categoría a trabajar son las siguientes: Se tiene una pista consistente de una línea blanca continua sobre fondo negro (Ver figura \ref{fig:pista1}). El robot debe ser capaz de recorrer la totalidad del trazado de forma válida, o sea, que la proyección del robot no se salga de este, además debe detenerse por su cuenta. Esta pista no es conocida hasta el momento de participar, por lo que no se puede hacer un pre mapeado de la pista.
 
 Cada participante tiene 5 intentos dentro de un periodo de 3 minutos para lograr el menor tiempo posible. Lo normal es utilizar el primer intento para mapear la pista y los otros 4 para tratar de obtener vueltas válidas lo más rápido posible.
 
@@ -24,6 +24,8 @@ En la última competencia realizada, la gran mayoría (por no decir todos) utili
 \subsubsection{Seguimiento de línea}
 El método actual para seguir la línea se basa principalmente en el uso de sensores infrarrojo para la obtención de la posición relativa del robot, y con esta información el uso de un PID para el control automático.
 
+\textit{\textcolor{red}{Añadir aquí una descripción más profunda de un PID}}
+
 \subsubsection{Mapeo}
 Para la primera vuelta, los robots deben ser capaces de las siguientes 2 características: identificar las marcas de curva que se encuentran en la pista en cada cambio de curvatura (Ver figura \ref{fig:marcaspista}) y poder saber su posición actual en términos de coordenadas cartesianas (x,y).
 
@@ -33,13 +35,14 @@ Para la primera vuelta, los robots deben ser capaces de las siguientes 2 caracte
 \caption{\label{fig:marcaspista} Ejemplo de marcas de curva} Fuente: All Chile Robot Contest.
 \end{figure}
 
-Para la primera, se necesitan sensores infrarrojos capaces de identificar blanco vs negro posicionados de tal forma que siempre detecten las marcas correspondientes. Para la segunda se pueden utilizar 2 elementos de manera independiente o junta (esta última es la más óptima): Encoders en cada rueda (Odometría), lo cual permite saber la velocidad real de cada una. Y una IMU , que básicamente es un giroscopio+acelerómetro.
+Para la primera, se necesitan sensores infrarrojos capaces de identificar blanco vs negro posicionados de tal forma que siempre detecten las marcas correspondientes. Para la segunda se pueden utilizar 2 elementos de manera independiente o junta (esta última es la más óptima): Encoders en cada rueda (Odometría), lo cual permite saber la velocidad real de cada una. Y una IMU, que básicamente es un giroscopio+acelerómetro.
 
 De esta forma se puede hacer una estimación relativamente precisa de la posición del robot en términos de (x,y), resultando en una nube de puntos que representan la pista. Usualmente esta información es guardada en un simple txt.
 
 \subsubsection{Optimización}
 Con la nube de puntos generada, se utiliza un algoritmo de MATLAB conocido como PRM\footnote{\url{https://la.mathworks.com/help/robotics/ug/probabilistic-roadmaps-prm.html} , PRM algorithm.}, en donde se define 
 un mapa binario donde la ruta generada, más el ancho del robot, se define como espacio válido para desplazarse, y el resto como obstáculo. Luego se generan puntos aleatorios dentro de la zona donde el robot puede pasar y finalmente se juntan los que permiten la ruta más corta posible(Ver figura \ref{fig:PRM}).
+\textit{\textcolor{red}{Aquí entrar más en detalle en la definición del PRM}}
 
 \begin{figure}[h]
 \centering
